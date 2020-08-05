@@ -4,31 +4,36 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
   Image,
   ImageBackground,
   Dimensions,
+  TextInput,
 } from "react-native";
 
 import color from "../config/color";
 
 export default function Intro() {
+  const [value, onChangeText] = React.useState("");
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.BackgroundImage}
-        source={require("../assets/image/intro_image.png")}
-      >
-        <Text style={styles.Text}>
-          Hi there!{"\n"}
-          We'll be taking care of ur{"\n"}
-          health from now on.
-        </Text>
+        source={require("../assets/image/otp.png")}
+      ></ImageBackground>
 
-        <Image
-          source={require("../assets/image/nextButton.png")}
-          style={styles.ArrowButton}
-        ></Image>
-      </ImageBackground>
+      <TextInput
+        style={styles.input}
+        placeholder="Phone No."
+        onChangeText={(text) => onChangeText(text)}
+        value={value}
+      />
+
+      <Button
+        title="Press me"
+        style={styles.btn}
+        onPress={() => Alert.alert("Simple Button pressed")}
+      />
     </View>
   );
 }
@@ -55,8 +60,17 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height / 2.5, //HEIGHT
     width: Dimensions.get("window").width, //WIDTH
   },
-  ArrowButton: {
+
+  input: {
+    borderWidth: 1,
+    borderColor: "#000",
+    padding: 8,
+    margin: 10,
+    width: 300,
     position: "absolute",
-    top: Dimensions.get("window").height / 1.5,
+    bottom: Dimensions.get("window").height / 3.6,
+  },
+  btn: {
+    bottom: Dimensions.get("window").height / 4,
   },
 });
