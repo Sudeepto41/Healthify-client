@@ -40,23 +40,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  BackgroundImage: {
+    alignItems: "center",
+    position: "absolute",
+    top: Dimensions.get("window").height / 5, //margin TOP
+    height: Dimensions.get("window").height / 2.5, //HEIGHT
+    width: Dimensions.get("window").width, //WIDTH
+  },
   Text: {
     position: "absolute",
-    top: Dimensions.get("window").height / 2,
+    top: Dimensions.get("window").height / 1.5,
     fontFamily: "nunito-Black",
     color: "#4B5769",
     fontSize: 20,
     textAlign: "center",
   },
-  BackgroundImage: {
-    alignItems: "center",
-    position: "absolute",
-    top: Dimensions.get("window").height / 6.3, //margin TOP
-    height: Dimensions.get("window").height / 2.5, //HEIGHT
-    width: Dimensions.get("window").width, //WIDTH
-  },
+
   ArrowButton: {
     position: "absolute",
-    top: Dimensions.get("window").height / 1.5,
+    top: Dimensions.get("window").height / 1.2,
   },
 });
