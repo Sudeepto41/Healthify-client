@@ -12,18 +12,16 @@ import {
   Alert,
 } from "react-native";
 
-const UselessTextInput = () => {
-  const [value, onChangeText] = React.useState("Useless Placeholder");
+import color from "../config/color";
 
 export default function PhoneAuth() {
-
   const [PhoneNo, setPhoneNo] = useState("");
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.BackgroundImage}
-        source={require("../assets/image/otp.png")}>
-      </ImageBackground>
+        source={require("../assets/image/otp.png")}
+      ></ImageBackground>
 
       <TextInput
         style={styles.input}
@@ -39,6 +37,41 @@ export default function PhoneAuth() {
       />
     </View>
   );
-};
+}
 
-export default UselessTextInput;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: color.bg_light,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  Text: {
+    position: "absolute",
+    top: Dimensions.get("window").height / 2,
+    fontFamily: "nunito-Black",
+    color: "#4B5769",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  BackgroundImage: {
+    alignItems: "center",
+    position: "absolute",
+    top: Dimensions.get("window").height / 6.3, //margin TOP
+    height: Dimensions.get("window").height / 2.5, //HEIGHT
+    width: Dimensions.get("window").width, //WIDTH
+  },
+
+  input: {
+    borderWidth: 1,
+    borderColor: "#000",
+    padding: 8,
+    margin: 10,
+    width: 300,
+    position: "absolute",
+    bottom: Dimensions.get("window").height / 3.6,
+  },
+  btn: {
+    bottom: Dimensions.get("window").height / 4,
+  },
+});

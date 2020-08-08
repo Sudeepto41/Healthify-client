@@ -4,11 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Fonts from "expo-font";
 import { AppLoading } from "expo";
-import { StackActions } from "react-navigation";
 
 import Intro from "./app/screens/intro";
 import PhoneAuth from "./app/screens/phoneauth";
-
 
 const getFonts = () => {
   return Fonts.loadAsync({
