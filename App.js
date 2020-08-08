@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler';
 import React, { useState } from "react";
 import { StyleSheet, Text, View, _View } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import * as Fonts from "expo-font";
 import { AppLoading } from "expo";
 
@@ -25,7 +25,6 @@ const getFonts = () => {
 const Stack = createStackNavigator();
 
 export default function App() {
-
   const [fontsLoaded, setfontsLoaded] = useState(false);
 
   if (fontsLoaded) {
