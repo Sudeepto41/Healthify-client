@@ -24,7 +24,7 @@ export default function Intro() {
                 We'll be taking care of ur{"\n"}
                 health from now on.
             </Text>
-            <TouchableWithoutFeedback onPress={() => alert('TU CHUTIYA LAVDE!')}>
+            <TouchableWithoutFeedback onPress={() => alert('Welcome!')}>
                 <Image
                     source={require("../assets/image/nextButton.png")}
                     style={styles.ArrowButton}>
