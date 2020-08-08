@@ -17,6 +17,7 @@ import color from "../config/color";
 export default function PhoneAuth() {
 
   const [PhoneNo, setPhoneNo] = useState("");
+
   return (
     <View style={styles.container}>
       <ImageBackground
