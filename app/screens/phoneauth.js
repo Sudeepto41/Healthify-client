@@ -16,6 +16,7 @@ const UselessTextInput = () => {
   const [value, onChangeText] = React.useState("Useless Placeholder");
 
 export default function PhoneAuth() {
+
   const [PhoneNo, setPhoneNo] = useState("");
   return (
     <View style={styles.container}>
