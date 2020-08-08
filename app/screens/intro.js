@@ -9,11 +9,14 @@ import {
     Dimensions,
     TouchableWithoutFeedback,
 } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import color from "../config/color";
 
-export default function Intro() {
+export default function Intro({ navigation }) {
     return (
+
         <View style={styles.container}>
             <Image
                 style={styles.BackgroundImage}
@@ -24,13 +27,13 @@ export default function Intro() {
                 We'll be taking care of ur{"\n"}
                 health from now on.
             </Text>
-            <TouchableWithoutFeedback onPress={() => alert('TU CHUTIYA LAVDE!')}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('phoneauth')}>
                 <Image
                     source={require("../assets/image/nextButton.png")}
                     style={styles.ArrowButton}>
                 </Image>
-            </TouchableWithoutFeedback>
-        </View>
+            </TouchableWithoutFeedback >
+        </View >
     );
 }
 

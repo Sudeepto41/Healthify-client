@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,30 +9,31 @@ import {
   ImageBackground,
   Dimensions,
   TextInput,
+  Alert,
 } from "react-native";
 
 import color from "../config/color";
 
-export default function Intro() {
-  const [value, onChangeText] = React.useState("");
+export default function PhoneAuth() {
+  const [PhoneNo, setPhoneNo] = useState("");
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.BackgroundImage}
-        source={require("../assets/image/otp.png")}
-      ></ImageBackground>
+        source={require("../assets/image/otp.png")}>
+      </ImageBackground>
 
       <TextInput
         style={styles.input}
         placeholder="Phone No."
-        onChangeText={(text) => onChangeText(text)}
-        value={value}
+        onChangeText={(Number) => setPhoneNo(Number)}
+        value={PhoneNo}
       />
 
       <Button
         title="Press me"
         style={styles.btn}
-        onPress={() => Alert.alert("Simple Button pressed")}
+        onPress={() => alert(PhoneNo)}
       />
     </View>
   );
