@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React, { useState } from "react";
 import { StyleSheet, Text, View, _View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -32,12 +33,13 @@ export default function App() {
           initialRouteName="intro"
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="intro" component={Intro} />
-          <Stack.Screen name="phoneauth" component={PhoneAuth} />
+          <Stack.Screen name='intro' component={Intro} />
+          <Stack.Screen name='phoneauth' component={PhoneAuth} />
         </Stack.Navigator>
       </NavigationContainer>
     );
-  } else {
+  }
+  else {
     return (
       <AppLoading startAsync={getFonts} onFinish={() => setfontsLoaded(true)} />
     );

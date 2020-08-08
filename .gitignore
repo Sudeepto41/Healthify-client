@@ -25,10 +25,14 @@ project.xcworkspace
 # Android/IntelliJ
 #
 build/
+android
 .idea
 .gradle
 local.properties
 *.iml
+
+ios
+_tests_
 
 # node.js
 #
@@ -61,12 +65,5 @@ buck-out/
 # Expo
 .expo/*
 web-build/
-
-android
-
-ios
-
 metro.config.js
- 
 .buckconfig
-
