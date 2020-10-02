@@ -19,38 +19,36 @@ export default function PhoneAuth() {
   const [PhoneNo, setPhoneNo] = useState("");
 
   return (
-    
-      <View style={styles.container}>
-        <ImageBackground
-          style={styles.BackgroundImage}
-          source={require("../assets/image/otp.png")}
-        ></ImageBackground>
+    <View style={styles.container}>
+      <ImageBackground
+        style={styles.BackgroundImage}
+        source={require("../assets/image/PhoneAuthBG.png")}
+      ></ImageBackground>
 
-        <TextInput
-          keyboardType="default"
-          style={styles.input}
-          placeholder="Username"
-          onChangeText={(Number) => setPhoneNo(Number)}
-          value={PhoneNo}
+      <TextInput
+        keyboardType="default"
+        style={styles.input}
+        placeholder="Username"
+        onChangeText={(Number) => setPhoneNo(Number)}
+        value={PhoneNo}
+      />
+
+      <TextInput
+        keyboardType="visible-password"
+        style={styles.input1}
+        placeholder="Password"
+        onChangeText={(Number) => setPhoneNo(Number)}
+        value={PhoneNo}
+      />
+
+      <View style={styles.btn}>
+        <Button
+          title="Login"
+          style={styles.butt}
+          onPress={() => alert(PhoneNo)}
         />
-
-        <TextInput
-          keyboardType="visible-password"
-          style={styles.input1}
-          placeholder="Password"
-          onChangeText={(Number) => setPhoneNo(Number)}
-          value={PhoneNo}
-        />
-
-        <View style={styles.btn}>
-          <Button
-            title="Login"
-            style={styles.butt}
-            onPress={() => alert(PhoneNo)}
-          />
-        </View>
       </View>
-    
+    </View>
   );
 }
 
