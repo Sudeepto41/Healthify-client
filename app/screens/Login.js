@@ -60,8 +60,13 @@ export default function login() {
                 })
               })
               .then((response) => response.json())
-              .then((json) => {
-                alert("signed in biiiitch!!!!")
+              .then((resp) => {
+                if (resp.token == "error") {
+                  alert("bummer bhsdk!!!");
+                }
+                else {
+                  alert("Yeet lodu!");
+                }
               })
               .catch((error) => {
                 console.error(error);
