@@ -11,12 +11,60 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import auth from '@react-native-firebase/auth';
 
 import color from "../config/color";
 
+
 export default function PhoneAuth() {
   const [PhoneNo, setPhoneNo] = useState("");
+  // If null, no SMS has been sent
+  const [confirm, setConfirm] = useState(null);
+  const [code, setCode] = useState('');
+
+  // Handle the button press
+  async function signInWithPhoneNumber(phoneNumber) {
+    console.log(1)
+    const confirmation = await auth().signInWithPhoneNumber(phoneNumber, true);
+    console.log(2)
+    setConfirm(confirmation);
+    console.log(3)
+  }
+
+  async function confirmCode() {
+    console.log(4)
+    try {
+      await confirm.confirm(code);
+      console.log('SUCCESS')
+    } catch (error) {
+      console.log('Invalid code.');
+    }
+  }
+
+  if (!confirm) {
+    return (
+      <View style={styles.container}>
+        <ImageBackground
+          style={styles.BackgroundImage}
+          source={require("../assets/image/PhoneAuthBG.png")}>
+        </ImageBackground>
+
+        <TextInput
+          style={styles.input}
+          placeholder="Phone No."
+          keyboardType="numeric"
+          onChangeText={(Number) => setPhoneNo(Number)}
+          value={PhoneNo}
+        />
+
+        <Button
+          title="Press me"
+          style={styles.btn}
+          onPress={() => signInWithPhoneNumber('+91 77090 13680')}
+        />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -50,6 +98,7 @@ export default function PhoneAuth() {
       </View>
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({

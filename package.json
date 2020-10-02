@@ -10,6 +10,10 @@
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-firebase/app": "^8.3.0",
+<<<<<<< HEAD
+=======
+    "@react-native-firebase/auth": "^8.3.1",
+>>>>>>> 4e118871ae5426b2b2db0415e4db72d990601937
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.9.0",
     "expo": "~38.0.9",
