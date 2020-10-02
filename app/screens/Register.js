@@ -14,7 +14,7 @@ import {
 
 import color from "../config/color";
 
-export default function PhoneAuth() {
+export default function Register() {
   const [PhoneNo, setPhoneNo] = useState("");
 
   return (

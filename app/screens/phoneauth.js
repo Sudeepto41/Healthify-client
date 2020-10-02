@@ -11,6 +11,7 @@ import {
   TextInput,
   Alert,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 import color from "../config/color";
 
