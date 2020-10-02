@@ -16,7 +16,8 @@ import { ScrollView } from "react-native-gesture-handler";
 import color from "../config/color";
 
 export default function login() {
-  const [PhoneNo, setPhoneNo] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <View style={styles.container}>
@@ -29,23 +30,44 @@ export default function login() {
         keyboardType="default"
         style={styles.input}
         placeholder="Username"
-        onChangeText={(Number) => setPhoneNo(Number)}
-        value={PhoneNo}
+        onChangeText={(String) => setEmail(String)}
+        value={email}
       />
 
       <TextInput
-        keyboardType="visible-password"
+        keyboardType="default"
         style={styles.input1}
         placeholder="Password"
-        onChangeText={(Number) => setPhoneNo(Number)}
-        value={PhoneNo}
+        onChangeText={(String) => setPassword(String)}
+        value={password}
       />
 
       <View style={styles.btn}>
         <Button
           title="Login"
           style={styles.butt}
-          onPress={() => alert(PhoneNo)}
+          onPress={() => {
+            fetch('https://asia-south1-healthify-server.cloudfunctions.net/api/login',
+              {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  email: email,
+                  password: password
+                })
+              })
+              .then((response) => response.json())
+              .then((json) => {
+                alert("signed in biiiitch!!!!")
+              })
+              .catch((error) => {
+                console.error(error);
+              });;
+          }
+          }
         />
       </View>
     </View>
