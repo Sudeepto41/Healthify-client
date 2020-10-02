@@ -19,15 +19,27 @@ export default function PhoneAuth() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.texx}>
+        <Text>Set up Your Profile!</Text>
+      </View>
+
       <ImageBackground
         style={styles.BackgroundImage}
-        source={require("../assets/image/otp.png")}
+        source={require("../assets/image/userimage.png")}
       ></ImageBackground>
 
       <TextInput
         keyboardType="default"
+        style={styles.input2}
+        placeholder="Name"
+        onChangeText={(Number) => setPhoneNo(Number)}
+        value={PhoneNo}
+      />
+
+      <TextInput
+        keyboardType="default"
         style={styles.input}
-        placeholder="Username"
+        placeholder="Chronic disease(History)"
         onChangeText={(Number) => setPhoneNo(Number)}
         value={PhoneNo}
       />
@@ -35,14 +47,14 @@ export default function PhoneAuth() {
       <TextInput
         keyboardType="visible-password"
         style={styles.input1}
-        placeholder="Password"
+        placeholder="Family disease(if any)"
         onChangeText={(Number) => setPhoneNo(Number)}
         value={PhoneNo}
       />
 
       <View style={styles.btn}>
         <Button
-          title="Login"
+          title="Submit"
           style={styles.butt}
           onPress={() => alert(PhoneNo)}
         />
@@ -70,8 +82,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
     top: Dimensions.get("window").height / 6.3, //margin TOP
-    height: Dimensions.get("window").height / 2.5, //HEIGHT
-    width: Dimensions.get("window").width, //WIDTH
+    height: 130,
+    width: 130,
   },
 
   input: {
@@ -94,9 +106,25 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: Dimensions.get("window").height / 3.7,
   },
+  input2: {
+    borderWidth: 1,
+    borderColor: "#000",
+    padding: 8,
+    margin: 10,
+    width: 300,
+    borderRadius: 24,
+    position: "absolute",
+    top: Dimensions.get("window").height / 3.0,
+  },
   btn: {
     position: "absolute",
     bottom: Dimensions.get("window").height / 5.4,
     width: 170,
+  },
+  texx: {
+    fontSize: 12,
+    color: "red",
+    position: "absolute",
+    top: Dimensions.get("window").height / 13.0,
   },
 });
