@@ -15,7 +15,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import color from "../config/color";
 
-export default function PhoneAuth() {
+export default function login() {
   const [PhoneNo, setPhoneNo] = useState("");
 
   return (

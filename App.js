@@ -7,7 +7,7 @@ import * as Fonts from "expo-font";
 import { AppLoading } from "expo";
 
 import Intro from "./app/screens/intro";
-import PhoneAuth from "./app/screens/phoneauth";
+import login from "./app/screens/Login";
 
 const getFonts = () => {
   return Fonts.loadAsync({
@@ -34,7 +34,7 @@ export default function App() {
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="intro" component={Intro} />
-          <Stack.Screen name="phoneauth" component={PhoneAuth} />
+          <Stack.Screen name="login" component={login} />
         </Stack.Navigator>
       </NavigationContainer>
     );
