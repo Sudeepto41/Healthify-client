@@ -1,9 +1,9 @@
 {
-  "name": "new",
-  "displayName": "new",
+  "name": "Healthify",
+  "displayName": "Healthify",
   "expo": {
-    "name": "new",
-    "slug": "new",
+    "name": "Healthify",
+    "slug": "Healthify",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
