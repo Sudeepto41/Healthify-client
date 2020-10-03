@@ -27,7 +27,8 @@ export default function Intro({ navigation }) {
                 We'll be taking care of ur{"\n"}
                 health from now on.
             </Text>
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('login')}>
+            <TouchableWithoutFeedback
+                onPress={() => navigation.navigate('register')}>
                 <Image
                     source={require("../assets/image/nextButton.png")}
                     style={styles.ArrowButton}>

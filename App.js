@@ -8,6 +8,7 @@ import { AppLoading } from "expo";
 
 import Intro from "./app/screens/intro";
 import login from "./app/screens/Login";
+import register from "./app/screens/Register";
 
 const getFonts = () => {
   return Fonts.loadAsync({
@@ -35,6 +36,7 @@ export default function App() {
         >
           <Stack.Screen name="intro" component={Intro} />
           <Stack.Screen name="login" component={login} />
+          <Stack.Screen name="register" component={register} />
         </Stack.Navigator>
       </NavigationContainer>
     );

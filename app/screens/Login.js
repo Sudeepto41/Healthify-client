@@ -29,7 +29,7 @@ export default function login() {
       <TextInput
         keyboardType="default"
         style={styles.input}
-        placeholder="Username"
+        placeholder="Email"
         onChangeText={(String) => setEmail(String)}
         value={email}
       />

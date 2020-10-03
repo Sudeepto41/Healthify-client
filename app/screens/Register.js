@@ -4,13 +4,16 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
+
   Image,
-  ImageBackground,
   Dimensions,
   TextInput,
   Alert,
+  SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
+
+import { FontAwesome } from '@expo/vector-icons';
 
 import color from "../config/color";
 
@@ -18,113 +21,152 @@ export default function Register() {
   const [PhoneNo, setPhoneNo] = useState("");
 
   return (
-    <View style={styles.container}>
-      <View style={styles.texx}>
-        <Text>Set up Your Profile!</Text>
-      </View>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.header}>
+        Set up your profile
+      </Text>
 
-      <ImageBackground
-        style={styles.BackgroundImage}
-        source={require("../assets/image/userimage.png")}
-      ></ImageBackground>
+      <Image
+        style={styles.image}
+        source={require("../assets/image/PhotoProfile.png")}
+      ></Image>
 
-      <TextInput
-        keyboardType="default"
-        style={styles.input2}
-        placeholder="Name"
-        onChangeText={(Number) => setPhoneNo(Number)}
-        value={PhoneNo}
-      />
-
-      <TextInput
-        keyboardType="default"
-        style={styles.input}
-        placeholder="Chronic disease(History)"
-        onChangeText={(Number) => setPhoneNo(Number)}
-        value={PhoneNo}
-      />
-
-      <TextInput
-        keyboardType="visible-password"
-        style={styles.input1}
-        placeholder="Family disease(if any)"
-        onChangeText={(Number) => setPhoneNo(Number)}
-        value={PhoneNo}
-      />
-
-      <View style={styles.btn}>
-        <Button
-          title="Submit"
-          style={styles.butt}
-          onPress={() => alert(PhoneNo)}
+      <View style={styles.view_email}>
+        <FontAwesome name="user" size={24} color="#C2C2C2" />
+        <TextInput
+          keyboardType="default"
+          style={styles.input}
+          placeholder="Email"
         />
       </View>
-    </View>
+      <View style={styles.view_pass}>
+        <FontAwesome name="user" size={24} color="#C2C2C2" />
+        <TextInput
+          keyboardType="default"
+          style={styles.input}
+          placeholder="Password"
+        />
+      </View>
+      <View style={styles.view_cnf_pass}>
+        <FontAwesome name="user" size={24} color="#C2C2C2" />
+        <TextInput
+          keyboardType="default"
+          style={styles.input}
+          placeholder="Confirm Password"
+        />
+      </View>
+
+      <View style={styles.view_btn}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            alert("pressed!")
+          }}
+        >
+          <Text
+            style={styles.btn_txt}
+          >
+            Sign Up
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: color.bg_light,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: "center"
   },
-  Text: {
-    position: "absolute",
-    top: Dimensions.get("window").height / 2,
-    fontFamily: "nunito-Black",
-    color: "#4B5769",
-    fontSize: 20,
-    textAlign: "center",
+  header: {
+    fontFamily: "nunito-Bold",
+    fontSize: 22,
+    marginTop: 60,
+
   },
-  BackgroundImage: {
+  image: {
     alignItems: "center",
     position: "absolute",
-    top: Dimensions.get("window").height / 6.3, //margin TOP
-    height: 130,
-    width: 130,
+    resizeMode: "contain",
+    top: Dimensions.get("window").height / 15, //margin TOP
+    height: Dimensions.get("window").height / 3, //HEIGHT
+    width: Dimensions.get("window").width / 3, //WIDTH
   },
 
+  view_email: {
+    top: Dimensions.get("window").height / 4.25,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F8F2F2",
+    borderRadius: 24,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderColor: "#C2C2C2",
+    borderBottomWidth: 2.5,
+    borderRightWidth: 1,
+    borderLeftWidth: 1
+
+  },
+  view_pass: {
+    top: Dimensions.get("window").height / 3.7,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F8F2F2",
+    borderRadius: 24,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderColor: "#C2C2C2",
+    borderBottomWidth: 2,
+    borderRightWidth: 1,
+    borderLeftWidth: 1
+
+  },
+  view_cnf_pass: {
+    top: Dimensions.get("window").height / 3.25,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F8F2F2",
+    borderRadius: 24,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderColor: "#C2C2C2",
+    borderBottomWidth: 2.5,
+    borderRightWidth: 1,
+    borderLeftWidth: 1
+
+  },
   input: {
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 8,
-    margin: 10,
+    marginLeft: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     width: 300,
     borderRadius: 24,
-    position: "absolute",
-    bottom: Dimensions.get("window").height / 2.7,
+    fontFamily: "nunito-SemiBold",
+    fontSize: 18,
   },
-  input1: {
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 8,
-    margin: 10,
-    width: 300,
-    borderRadius: 24,
-    position: "absolute",
-    bottom: Dimensions.get("window").height / 3.7,
-  },
-  input2: {
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 8,
-    margin: 10,
-    width: 300,
-    borderRadius: 24,
-    position: "absolute",
-    top: Dimensions.get("window").height / 3.0,
+  view_btn: {
+    top: Dimensions.get("window").height / 2.5,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F8F2F2",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   btn: {
-    position: "absolute",
-    bottom: Dimensions.get("window").height / 5.4,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#2974DF",
+    height: 50,
+    width: 300,
+    padding: 10,
+    borderRadius: 25,
     width: 170,
   },
-  texx: {
-    fontSize: 12,
-    color: "red",
-    position: "absolute",
-    top: Dimensions.get("window").height / 13.0,
-  },
+  btn_txt: {
+    color: "#FFFFFF",
+    fontFamily: "nunito-Bold",
+    fontSize: 20,
+    fontWeight: "700",
+  }
 });
