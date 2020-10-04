@@ -1,18 +1,15 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
     StyleSheet,
     Text,
     View,
     Image,
-    ImageBackground,
     Dimensions,
     TouchableWithoutFeedback,
 } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
 import color from "../config/color";
+import login from "./Login";
 
 export default function Intro({ navigation }) {
     return (
@@ -27,8 +24,16 @@ export default function Intro({ navigation }) {
                 We'll be taking care of ur{"\n"}
                 health from now on.
             </Text>
+            <Image
+                source={require("../assets/image/navigation_dots.png")}
+                style={{
+                    alignSelf: "center",
+                    position: "absolute",
+                    top: Dimensions.get("window").height / 1.22,
+                }}>
+            </Image>
             <TouchableWithoutFeedback
-                onPress={() => navigation.navigate('register')}>
+                onPress={() => navigation.navigate('login')}>
                 <Image
                     source={require("../assets/image/nextButton.png")}
                     style={styles.ArrowButton}>
@@ -63,6 +68,7 @@ const styles = StyleSheet.create({
 
     ArrowButton: {
         position: "absolute",
-        top: Dimensions.get("window").height / 1.2,
+        top: Dimensions.get("window").height / 1.15,
+        left: Dimensions.get("window").width / 1.4,
     },
 });
