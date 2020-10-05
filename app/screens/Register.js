@@ -175,6 +175,7 @@ export default function Register({ navigation }) {
             } else if (gender == '') {
               alert('Please tell us your gender!')
             } else {
+              navigation.navigate('hangon')
               fetch('https://asia-south1-healthify-server.cloudfunctions.net/api/signup',
                 {
                   method: 'POST',
@@ -185,7 +186,7 @@ export default function Register({ navigation }) {
                   body: JSON.stringify({
                     email: email,
                     password: password,
-                    cnfpassword: cnfpassword,
+                    confirmPassword: cnfpassword,
                     name: name,
                     age: age,
                     gender: gender
@@ -193,6 +194,9 @@ export default function Register({ navigation }) {
                 })
                 .then((response) => response.json())
                 .then((resp) => {
+                  console.log(password)
+                  console.log(cnfpassword)
+                  console.log(resp)
                   if (resp.token) {
                     alert("Yeet lodu!.");
                   }
@@ -451,7 +455,7 @@ const styles = StyleSheet.create({
 
   goto_login: {
     position: "absolute",
-    top: Dimensions.get("window").height / 1.03,
+    top: Dimensions.get("window").height / 1.06,
     alignSelf: "center",
     flexDirection: "row"
   }

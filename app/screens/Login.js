@@ -57,6 +57,7 @@ export default function login({ navigation }) {
           onPress={() => {
 
             if (email != '' && password != '') {
+              navigation.navigate('hangon')
               fetch('https://asia-south1-healthify-server.cloudfunctions.net/api/login',
                 {
                   method: 'POST',
@@ -72,7 +73,12 @@ export default function login({ navigation }) {
                 .then((response) => response.json())
                 .then((resp) => {
                   if (resp.token == "error") {
-                    alert("Wrong Credentials! Try Again.");
+                    setTimeout(() => {
+                      navigation.navigate('login')
+                      alert("Wrong Credentials! Try Again.");
+                    }, 800)
+
+
                   }
                   else {
                     alert("Yeet lodu!");
@@ -179,7 +185,7 @@ const styles = StyleSheet.create({
   },
   goto_register: {
     position: "absolute",
-    top: Dimensions.get("window").height / 1.03,
+    top: Dimensions.get("window").height / 1.06,
     alignSelf: "center",
     flexDirection: "row"
   }
