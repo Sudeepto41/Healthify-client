@@ -81,7 +81,7 @@ export default function login({ navigation }) {
 
                   }
                   else {
-                    alert("Yeet lodu!");
+                    alert("Welcome!");
                   }
                 })
                 .catch((error) => {
