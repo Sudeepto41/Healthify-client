@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import color from "../config/color";
-import login from "./Login";
+import login from "./login";
 
 export default function Intro({ navigation }) {
     return (
