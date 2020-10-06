@@ -198,7 +198,7 @@ export default function Register({ navigation }) {
                   console.log(cnfpassword)
                   console.log(resp)
                   if (resp.token) {
-                    alert("Yeet lodu!.");
+                    alert("Welcome!");
                   }
                   else if (resp.email) {
                     alert("Email already in use");
