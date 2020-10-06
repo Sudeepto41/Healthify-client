@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Image,
+  Button,
   ImageBackground,
   Dimensions,
 } from "react-native";
@@ -21,6 +22,11 @@ export default function Hang({ navigation }) {
       ></Image>
       <Text style={styles.Text}>Hang ON!</Text>
       <Text style={styles.Text1}>Let us sign you UP!</Text>
+      <Button
+        onPress={() => navigation.navigate("diagnosis")}
+        title="Diagnose"
+        color="#841584"
+      />
     </View>
   );
 }
