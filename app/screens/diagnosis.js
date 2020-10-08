@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
-  
+  Alert,
   View,
   Image,
   Dimensions,
@@ -26,6 +26,10 @@ export default function Diagnosis() {
     <SafeAreaView style={styles.container}>
       <PaperProvider>
         <Appbar style={styles.appBar}>
+          <Appbar.Action
+            icon="archive"
+            onPress={() => Alert.alert('Left button pressed')}
+          />
         </Appbar>
 
         <View style={styles.innerContainer}>
