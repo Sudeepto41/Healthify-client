@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   heroImage: {
-    alignItems: 'center',
+    alignSelf: 'center',
     // position: 'absolute',
     height: Dimensions.get('window').height / 3,
     width: Dimensions.get('window').width,
