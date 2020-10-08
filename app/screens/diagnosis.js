@@ -13,6 +13,7 @@ import {
 import { Picker } from '@react-native-community/picker'
 import {
   Provider as PaperProvider,
+  Appbar,
 } from 'react-native-paper'
 
 import Constants from 'expo-constants'
@@ -24,6 +25,9 @@ export default function Diagnosis() {
   return (
     <SafeAreaView style={styles.container}>
       <PaperProvider>
+        <Appbar style={styles.appBar}>
+        </Appbar>
+
         <View style={styles.innerContainer}>
           <Image
             style={styles.heroImage}
@@ -72,5 +76,10 @@ const styles = StyleSheet.create({
     height: 50,
     width: 250,
     paddingVertical: 4,
+  },
+  appBar: {
+    // position: 'absolute',
+    left: 0,
+    right: 0,
   },
 })
