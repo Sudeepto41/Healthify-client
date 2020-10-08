@@ -101,6 +101,13 @@ export default function Diagnosis() {
               />
             ))}
           </Picker>
+
+          <Button
+            icon="check"
+            mode="contained"
+            onPress={() => Alert.alert('Submitted')}>
+            Submit
+          </Button>
         </View>
       </PaperProvider>
     </SafeAreaView>
