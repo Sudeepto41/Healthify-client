@@ -68,4 +68,9 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height / 3,
     width: Dimensions.get('window').width,
   },
+  picker: {
+    height: 50,
+    width: 250,
+    paddingVertical: 4,
+  },
 })
