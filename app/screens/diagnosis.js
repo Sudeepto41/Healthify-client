@@ -131,10 +131,14 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height / 3,
     width: Dimensions.get('window').width,
   },
+  label: {
+    marginTop: 16,
+  },
   picker: {
     height: 50,
     width: 250,
     paddingVertical: 4,
+    marginVertical: 12,
   },
   appBar: {
     // position: 'absolute',
