@@ -11,6 +11,9 @@ import {
   Dimensions,
 } from 'react-native'
 import { Picker } from '@react-native-community/picker'
+import {
+  Provider as PaperProvider,
+} from 'react-native-paper'
 
 import Constants from 'expo-constants'
 
@@ -20,6 +23,7 @@ export default function Diagnosis() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <PaperProvider>
         <View style={styles.innerContainer}>
           <Image
             style={styles.heroImage}
@@ -43,6 +47,7 @@ export default function Diagnosis() {
             ))}
           </Picker>
         </View>
+      </PaperProvider>
     </SafeAreaView>
   )
 }
