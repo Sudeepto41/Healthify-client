@@ -11,13 +11,10 @@ import {
   Dimensions,
 } from 'react-native'
 import { Picker } from '@react-native-community/picker'
-import {
-  Provider as PaperProvider,
-  Appbar,
-} from 'react-native-paper'
+import { Provider as PaperProvider, Appbar, Button } from 'react-native-paper'
 
 import Constants from 'expo-constants'
-import color from "../config/color";
+import color from '../config/color'
 
 export default function Diagnosis() {
   const [selectedBodyPart, setSelectedBodyPart] = useState({})
@@ -36,7 +33,7 @@ export default function Diagnosis() {
           <Appbar.Action
             icon="mail"
             onPress={() => {
-              Alert.alert('Set list of body parts')
+              // Alert.alert('Set list of body parts')
               setBodyParts([
                 {
                   id: 1,
