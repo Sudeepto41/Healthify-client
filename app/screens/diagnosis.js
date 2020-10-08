@@ -17,6 +17,7 @@ import {
 } from 'react-native-paper'
 
 import Constants from 'expo-constants'
+import color from "../config/color";
 
 export default function Diagnosis() {
   const [selectedBodyPart, setSelectedBodyPart] = useState({})
@@ -52,7 +53,7 @@ export default function Diagnosis() {
         <View style={styles.innerContainer}>
           <Image
             style={styles.heroImage}
-            source={require('../assets/PhoneAuthBG.png')}
+            source={require('../assets/image/PhoneAuthBG.png')}
           />
 
           <Text>Select Body Part</Text>
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
+    backgroundColor: color.bg_light,
   },
   innerContainer: {
     flex: 1,
