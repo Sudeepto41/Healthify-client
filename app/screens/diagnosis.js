@@ -8,10 +8,14 @@ import {
   Image,
   Dimensions,
 } from 'react-native'
+import { Picker } from '@react-native-community/picker'
 
 import Constants from 'expo-constants'
 
 export default function Diagnosis() {
+  const [selectedBodyPart, setSelectedBodyPart] = useState({})
+  const [bodyParts, setBodyParts] = useState([])
+
   return (
     <SafeAreaView style={styles.container}>
         <View style={styles.innerContainer}>
@@ -21,6 +25,21 @@ export default function Diagnosis() {
           />
 
           <Text>Select Body Part</Text>
+
+          <Picker
+            selectedValue={selectedBodyPart}
+            style={styles.picker}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedBodyPart(itemValue)
+            }>
+            {bodyParts.map((bodyPart) => (
+              <Picker.Item
+                label={bodyPart.name}
+                value={bodyPart}
+                key={bodyPart.id}
+              />
+            ))}
+          </Picker>
         </View>
     </SafeAreaView>
   )
