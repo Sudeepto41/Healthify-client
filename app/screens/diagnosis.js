@@ -30,6 +30,23 @@ export default function Diagnosis() {
             icon="archive"
             onPress={() => Alert.alert('Left button pressed')}
           />
+          <Appbar.Action
+            icon="mail"
+            onPress={() => {
+              Alert.alert('Set list of body parts')
+              setBodyParts([
+                {
+                  id: 1,
+                  name: 'Head',
+                },
+                {
+                  id: 2,
+                  name: 'Stomach',
+                },
+              ])
+              // setSelectedBodyPart({ id: bodyParts[0].id })
+            }}
+          />
         </Appbar>
 
         <View style={styles.innerContainer}>
