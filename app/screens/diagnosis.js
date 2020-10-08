@@ -53,7 +53,7 @@ export default function Diagnosis() {
         <View style={styles.innerContainer}>
           <Image
             style={styles.heroImage}
-            source={require('../assets/image/PhoneAuthBG.png')}
+            source={require('../assets/image/diagnosisImage.png')}
           />
 
           <Text>Select Body Part</Text>
