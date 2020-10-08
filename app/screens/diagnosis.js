@@ -22,6 +22,8 @@ import color from "../config/color";
 export default function Diagnosis() {
   const [selectedBodyPart, setSelectedBodyPart] = useState({})
   const [bodyParts, setBodyParts] = useState([])
+  const [symptoms, setSymptoms] = useState([])
+  const [selectedSymptom, setSelectedSymptom] = useState({})
 
   return (
     <SafeAreaView style={styles.container}>
@@ -56,15 +58,42 @@ export default function Diagnosis() {
             source={require('../assets/image/diagnosisImage.png')}
           />
 
-          <Text>Select Body Part</Text>
+          <Text style={styles.label}>Select Body Part</Text>
 
           <Picker
             selectedValue={selectedBodyPart}
             style={styles.picker}
-            onValueChange={(itemValue, itemIndex) =>
+            onValueChange={(itemValue, itemIndex) => {
               setSelectedBodyPart(itemValue)
-            }>
+              setSymptoms([
+                {
+                  id: 1,
+                  name: 'ache',
+                },
+                {
+                  id: 2,
+                  name: 'burning',
+                },
+              ])
+            }}>
             {bodyParts.map((bodyPart) => (
+              <Picker.Item
+                label={bodyPart.name}
+                value={bodyPart}
+                key={bodyPart.id}
+              />
+            ))}
+          </Picker>
+
+          <Text style={styles.label}>Select Symptom</Text>
+
+          <Picker
+            selectedValue={selectedSymptom}
+            style={styles.picker}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedSymptom(itemValue)
+            }>
+            {symptoms.map((bodyPart) => (
               <Picker.Item
                 label={bodyPart.name}
                 value={bodyPart}
