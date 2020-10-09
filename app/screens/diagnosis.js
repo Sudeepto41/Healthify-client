@@ -12,12 +12,14 @@ import {
 } from 'react-native'
 import { Picker } from '@react-native-community/picker'
 import { Provider as PaperProvider, Appbar, Button } from 'react-native-paper'
+import { AppLoading } from 'expo'
 
 import Constants from 'expo-constants'
 import color from '../config/color'
 
 export default function Diagnosis() {
   const [selectedBodyPart, setSelectedBodyPart] = useState({})
+  const [bodyPartsLoaded, setBodyPartsLoaded] = useState(false)
   const [bodyParts, setBodyParts] = useState([])
   const [symptoms, setSymptoms] = useState([])
   const [selectedSymptom, setSelectedSymptom] = useState({})
@@ -63,68 +65,70 @@ export default function Diagnosis() {
 
     fetchSymptoms()
   }
-        </Appbar>
 
-        <View style={styles.innerContainer}>
-          <Image
-            style={styles.heroImage}
-            source={require('../assets/image/diagnosisImage.png')}
-          />
+  if (bodyPartsLoaded) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <PaperProvider>
+          <View style={styles.innerContainer}>
+            <Image
+              style={styles.heroImage}
+              source={require('../assets/image/diagnosisImage.png')}
+            />
 
-          <Text style={styles.label}>Select Body Part</Text>
+            <Text style={styles.label}>Select Body Part</Text>
 
-          <Picker
-            selectedValue={selectedBodyPart}
-            style={styles.picker}
-            onValueChange={(itemValue, itemIndex) => {
-              setSelectedBodyPart(itemValue)
-              setSymptoms([
-                {
-                  id: 1,
-                  name: 'ache',
-                },
-                {
-                  id: 2,
-                  name: 'burning',
-                },
-              ])
-            }}>
-            {bodyParts.map((bodyPart) => (
-              <Picker.Item
-                label={bodyPart.name}
-                value={bodyPart}
-                key={bodyPart.id}
-              />
-            ))}
-          </Picker>
+            <Picker
+              selectedValue={selectedBodyPart}
+              style={styles.picker}
+              onValueChange={(itemValue, itemIndex) => {
+                setSelectedBodyPart(itemValue)
+                fetchSymptoms()
+              }}>
+              {bodyParts.map((bodyPart) => (
+                <Picker.Item
+                  label={bodyPart.name}
+                  value={bodyPart}
+                  key={bodyPart.id}
+                />
+              ))}
+            </Picker>
 
-          <Text style={styles.label}>Select Symptom</Text>
+            <Text style={styles.label}>Select Symptom</Text>
 
-          <Picker
-            selectedValue={selectedSymptom}
-            style={styles.picker}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedSymptom(itemValue)
-            }>
-            {symptoms.map((bodyPart) => (
-              <Picker.Item
-                label={bodyPart.name}
-                value={bodyPart}
-                key={bodyPart.id}
-              />
-            ))}
-          </Picker>
+            <Picker
+              selectedValue={selectedSymptom}
+              style={styles.picker}
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedSymptom(itemValue)
+              }>
+              {symptoms.map((bodyPart) => (
+                <Picker.Item
+                  label={bodyPart.name}
+                  value={bodyPart}
+                  key={bodyPart.id}
+                />
+              ))}
+            </Picker>
 
-          <Button
-            icon="check"
-            mode="contained"
-            onPress={() => Alert.alert('Submitted')}>
-            Submit
-          </Button>
-        </View>
-      </PaperProvider>
-    </SafeAreaView>
-  )
+            <Button
+              icon="check"
+              mode="contained"
+              onPress={() => fetchDiagnosis()}>
+              Submit
+            </Button>
+          </View>
+        </PaperProvider>
+      </SafeAreaView>
+    )
+  } else {
+    return (
+      <AppLoading
+        startAsync={fetchBodyParts}
+        onFinish={() => setBodyPartsLoaded(true)}
+      />
+    )
+  }
 }
 
 const styles = StyleSheet.create({
