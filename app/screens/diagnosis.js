@@ -114,7 +114,8 @@ export default function Diagnosis() {
             <Button
               icon="check"
               mode="contained"
-              onPress={() => fetchDiagnosis()}>
+              onPress={() => fetchDiagnosis()}
+              style={styles.btn}>
               Submit
             </Button>
           </View>
@@ -163,5 +164,12 @@ const styles = StyleSheet.create({
     right: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  btn: {
+    backgroundColor: '#2974DF',
+    height: 50,
+    width: 150,
+    paddingTop: 5,
+    borderRadius: 25,
   },
 })
