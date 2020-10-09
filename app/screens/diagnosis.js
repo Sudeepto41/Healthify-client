@@ -22,19 +22,9 @@ export default function Diagnosis() {
   const [symptoms, setSymptoms] = useState([])
   const [selectedSymptom, setSelectedSymptom] = useState({})
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <PaperProvider>
-        <Appbar style={styles.appBar}>
-          <Appbar.Action
-            icon="archive"
-            onPress={() => Alert.alert('Left button pressed')}
-          />
-          <Appbar.Action
-            icon="mail"
-            onPress={() => {
-              // Alert.alert('Set list of body parts')
-              setBodyParts([
+  async function fetchDiagnosis() {
+    Alert.alert('Fetching Diagnosis')
+  }
                 {
                   id: 1,
                   name: 'Head',
