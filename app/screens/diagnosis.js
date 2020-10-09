@@ -25,8 +25,22 @@ export default function Diagnosis() {
   async function fetchDiagnosis() {
     Alert.alert('Fetching Diagnosis')
   }
-                {
-                  id: 1,
+
+  async function fetchSymptoms() {
+    // await axios.get().then((response) => setBodyParts(response.data))
+    setSymptoms([
+      {
+        id: 1,
+        name: 'ache',
+      },
+      {
+        id: 2,
+        name: 'burning',
+      },
+    ])
+
+    setSelectedSymptom[symptoms[0]]
+  }
                   name: 'Head',
                 },
                 {
