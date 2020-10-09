@@ -41,16 +41,28 @@ export default function Diagnosis() {
 
     setSelectedSymptom[symptoms[0]]
   }
-                  name: 'Head',
-                },
-                {
-                  id: 2,
-                  name: 'Stomach',
-                },
-              ])
-              // setSelectedBodyPart({ id: bodyParts[0].id })
-            }}
-          />
+
+  async function fetchBodyParts() {
+    // await axios.get().then((response) => setBodyParts(response.data))
+    setBodyParts([
+      // {
+      //   id: 0,
+      //   name: 'Select Body Part',
+      // },
+      {
+        id: 1,
+        name: 'Head',
+      },
+      {
+        id: 2,
+        name: 'Stomach',
+      },
+    ])
+
+    setSelectedBodyPart[bodyParts[0]]
+
+    fetchSymptoms()
+  }
         </Appbar>
 
         <View style={styles.innerContainer}>
