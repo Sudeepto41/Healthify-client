@@ -10,7 +10,7 @@ function Intro() {
 
                 <Text style={styles.Text}>
                     Hi there!{"\n"}
-                    We'll be taking care of ur{"\n"}
+                    We'll be taking care of your{"\n"}
                     health from now on.
                 </Text>
 
