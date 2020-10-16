@@ -7,8 +7,8 @@ import * as Fonts from 'expo-font'
 import { AppLoading } from 'expo'
 
 import Intro from "./app/screens/intro";
-import login from "./app/screens/Login";
-import register from "./app/screens/Register";
+import login from "./app/screens/login";
+import register from "./app/screens/register";
 import hangon from "./app/screens/hangon";
 import allset from "./app/screens/allset";
 import home from "./app/screens/home";
