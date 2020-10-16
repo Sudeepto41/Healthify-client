@@ -198,13 +198,21 @@ export default function Register({ navigation }) {
                   console.log(cnfpassword)
                   console.log(resp)
                   if (resp.token) {
-                    alert("Yeet lodu!.");
+                    navigation.navigate('allset')
+                    setTimeout(() => {
+                      navigation.navigate('home');
+                    }, 800);
+
                   }
                   else if (resp.email) {
                     alert("Email already in use");
+                    navigation.navigate('register')
                   }
                   else {
-                    alert("mistake ho gaya sir")
+                    navigation.navigate('error');
+                    setTimeout(() => {
+                      navigation.navigate('register')
+                    }, 800)
                   }
                 })
                 .catch((error) => {
@@ -461,5 +469,3 @@ const styles = StyleSheet.create({
   }
 
 });
-
-

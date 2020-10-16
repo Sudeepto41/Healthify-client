@@ -11,6 +11,8 @@ import login from "./app/screens/Login";
 import register from "./app/screens/Register";
 import hangon from "./app/screens/hangon";
 import allset from "./app/screens/allset";
+import home from "./app/screens/home";
+//import diagnosis from "./app/screens/diagnosis";
 
 const getFonts = () => {
   return Fonts.loadAsync({
@@ -33,7 +35,7 @@ export default function App() {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="intro"
+          initialRouteName="Intro"
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="intro" component={Intro} />
@@ -41,6 +43,8 @@ export default function App() {
           <Stack.Screen name="register" component={register} />
           <Stack.Screen name="hangon" component={hangon} />
           <Stack.Screen name="allset" component={allset} />
+          <Stack.Screen name="home" component={home} />
+
         </Stack.Navigator>
       </NavigationContainer>
     );
