@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 import {
   StyleSheet,
@@ -8,128 +8,135 @@ import {
   View,
   Image,
   Dimensions,
-} from 'react-native'
-import { Picker } from '@react-native-community/picker'
-import { Provider as PaperProvider, Appbar, Button } from 'react-native-paper'
-import { AppLoading } from 'expo'
+} from "react-native";
+import { Picker } from "@react-native-community/picker";
+import { Provider as PaperProvider, Appbar, Button } from "react-native-paper";
+import { AppLoading } from "expo";
 
-import Constants from 'expo-constants'
-import color from '../config/color'
+import Constants from "expo-constants";
+import color from "../config/color";
 
 export default function Diagnosis() {
-  const [selectedBodyPart, setSelectedBodyPart] = useState({})
-  const [bodyPartsLoaded, setBodyPartsLoaded] = useState(false)
-  const [bodyParts, setBodyParts] = useState([])
-  const [selectedSubBodyPart, setSelectedSubBodyPart] = useState({})
-  const [subBodyParts, setSubBodyParts] = useState([])
-  const [symptoms, setSymptoms] = useState([])
-  const [selectedSymptom, setSelectedSymptom] = useState({})
+  const [selectedBodyPart, setSelectedBodyPart] = useState({});
+  const [bodyPartsLoaded, setBodyPartsLoaded] = useState(false);
+  const [bodyParts, setBodyParts] = useState([]);
+  const [selectedSubBodyPart, setSelectedSubBodyPart] = useState({});
+  const [subBodyParts, setSubBodyParts] = useState([]);
+  const [symptoms, setSymptoms] = useState([]);
+  const [selectedSymptom, setSelectedSymptom] = useState({});
 
   async function fetchDiagnosis() {
     fetch(
-      'https://rapidapi.p.rapidapi.com/diagnosis?symptoms=' +
+      "https://rapidapi.p.rapidapi.com/diagnosis?symptoms=" +
         JSON.stringify([selectedSymptom.ID]) +
-        '&gender=male&year_of_birth=1984&language=en-gb',
+        "&gender=male&year_of_birth=1984&language=en-gb",
       {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'x-rapidapi-host': 'priaid-symptom-checker-v1.p.rapidapi.com',
-          'x-rapidapi-key':
-            '24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb',
+          "x-rapidapi-host": "priaid-symptom-checker-v1.p.rapidapi.com",
+          "x-rapidapi-key":
+            "24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb",
         },
       }
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        let diag1 = data[1]
+          ? "\n\n" +
+            data[1].Issue.Name +
+            " - " +
+            data[1].Issue.Accuracy +
+            "%\nSpecialization: " +
+            data[1].Specialisation[1].Name
+          : "";
+
+        let diag2 = data[2]
+          ? "\n\n" +
+            data[2].Issue.Name +
+            " - " +
+            data[2].Issue.Accuracy +
+            "%\nSpecialization: " +
+            data[2].Specialisation[2].Name
+          : "";
+
         Alert.alert(
-          'Top 3 Diagnosis',
+          "Top 3 Diagnosis",
 
           data[0].Issue.Name +
-            ' - ' +
+            " - " +
             data[0].Issue.Accuracy +
-            '%\nSpecialization: ' +
+            "%\nSpecialization: " +
             data[0].Specialisation[0].Name +
-            '\n\n' +
-            data[1].Issue.Name +
-            ' - ' +
-            data[1].Issue.Accuracy +
-            '%\nSpecialization: ' +
-            data[1].Specialisation[1].Name +
-            '\n\n' +
-            data[2].Issue.Name +
-            ' - ' +
-            data[2].Issue.Accuracy +
-            '%\nSpecialization: ' +
-            data[2].Specialisation[2].Name
-        )
+            diag1 +
+            diag2
+        );
       })
       .catch((error) => {
-        console.error(error)
-      })
+        console.error(error);
+      });
   }
 
   async function fetchSymptoms(subBodyPart) {
     fetch(
-      'https://rapidapi.p.rapidapi.com/symptoms/' +
+      "https://rapidapi.p.rapidapi.com/symptoms/" +
         subBodyPart.ID +
-        '/man?language=en-gb',
+        "/man?language=en-gb",
       {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'x-rapidapi-host': 'priaid-symptom-checker-v1.p.rapidapi.com',
-          'x-rapidapi-key':
-            '24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb',
+          "x-rapidapi-host": "priaid-symptom-checker-v1.p.rapidapi.com",
+          "x-rapidapi-key":
+            "24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb",
         },
       }
     )
       .then((response) => response.json())
       .then((data) => {
-        setSymptoms(data)
+        setSymptoms(data);
       })
       .catch((error) => {
-        console.error(error)
-      })
+        console.error(error);
+      });
   }
 
   async function fetchBodyParts() {
-    fetch('https://rapidapi.p.rapidapi.com/body/locations?language=en-gb', {
-      method: 'GET',
+    fetch("https://rapidapi.p.rapidapi.com/body/locations?language=en-gb", {
+      method: "GET",
       headers: {
-        'x-rapidapi-host': 'priaid-symptom-checker-v1.p.rapidapi.com',
-        'x-rapidapi-key': '24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb',
+        "x-rapidapi-host": "priaid-symptom-checker-v1.p.rapidapi.com",
+        "x-rapidapi-key": "24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb",
       },
     })
       .then((response) => response.json())
       .then((data) => {
-        setBodyParts(data)
+        setBodyParts(data);
       })
       .catch((error) => {
-        console.error(error)
-      })
+        console.error(error);
+      });
   }
 
   async function fetchSubBodyParts(bodyPart) {
     fetch(
-      'https://rapidapi.p.rapidapi.com/body/locations/' +
+      "https://rapidapi.p.rapidapi.com/body/locations/" +
         bodyPart.ID +
-        '?language=en-gb',
+        "?language=en-gb",
       {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'x-rapidapi-host': 'priaid-symptom-checker-v1.p.rapidapi.com',
-          'x-rapidapi-key':
-            '24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb',
+          "x-rapidapi-host": "priaid-symptom-checker-v1.p.rapidapi.com",
+          "x-rapidapi-key":
+            "24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb",
         },
       }
     )
       .then((response) => response.json())
       .then((data) => {
-        setSubBodyParts(data)
+        setSubBodyParts(data);
       })
       .catch((error) => {
-        console.error(error)
-      })
+        console.error(error);
+      });
   }
 
   if (bodyPartsLoaded) {
@@ -139,7 +146,7 @@ export default function Diagnosis() {
           <View style={styles.innerContainer}>
             <Image
               style={styles.heroImage}
-              source={require('../assets/image/diagnosisImage.png')}
+              source={require("../assets/image/diagnosisImage.png")}
             />
 
             <Text style={styles.label}>Select Body Part</Text>
@@ -148,9 +155,10 @@ export default function Diagnosis() {
               selectedValue={selectedBodyPart}
               style={styles.picker}
               onValueChange={(itemValue, itemIndex) => {
-                setSelectedBodyPart(itemValue)
-                fetchSubBodyParts(itemValue)
-              }}>
+                setSelectedBodyPart(itemValue);
+                fetchSubBodyParts(itemValue);
+              }}
+            >
               {bodyParts.map((bodyPart) => (
                 <Picker.Item
                   label={bodyPart.Name}
@@ -166,9 +174,10 @@ export default function Diagnosis() {
               selectedValue={selectedSubBodyPart}
               style={styles.picker}
               onValueChange={(itemValue, itemIndex) => {
-                setSelectedSubBodyPart(itemValue)
-                fetchSymptoms(itemValue)
-              }}>
+                setSelectedSubBodyPart(itemValue);
+                fetchSymptoms(itemValue);
+              }}
+            >
               {subBodyParts.map((subBodyPart) => (
                 <Picker.Item
                   label={subBodyPart.Name}
@@ -185,7 +194,8 @@ export default function Diagnosis() {
               style={styles.picker}
               onValueChange={(itemValue, itemIndex) =>
                 setSelectedSymptom(itemValue)
-              }>
+              }
+            >
               {symptoms.map((symptom) => (
                 <Picker.Item
                   label={symptom.Name}
@@ -199,20 +209,21 @@ export default function Diagnosis() {
               icon="check"
               mode="contained"
               onPress={() => fetchDiagnosis()}
-              style={styles.btn}>
+              style={styles.btn}
+            >
               Submit
             </Button>
           </View>
         </PaperProvider>
       </SafeAreaView>
-    )
+    );
   } else {
     return (
       <AppLoading
         startAsync={fetchBodyParts}
         onFinish={() => setBodyPartsLoaded(true)}
       />
-    )
+    );
   }
 }
 
@@ -225,13 +236,13 @@ const styles = StyleSheet.create({
   innerContainer: {
     flex: 1,
     // justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: "center",
   },
   heroImage: {
-    alignSelf: 'center',
+    alignSelf: "center",
     // position: 'absolute',
-    height: Dimensions.get('window').height / 3,
-    width: Dimensions.get('window').width,
+    height: Dimensions.get("window").height / 3,
+    width: Dimensions.get("window").width,
   },
   label: {
     marginTop: 16,
@@ -246,14 +257,14 @@ const styles = StyleSheet.create({
     // position: 'absolute',
     left: 0,
     right: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   btn: {
-    backgroundColor: '#2974DF',
+    backgroundColor: "#2974DF",
     height: 50,
     width: 150,
     paddingTop: 5,
     borderRadius: 25,
   },
-})
+});
