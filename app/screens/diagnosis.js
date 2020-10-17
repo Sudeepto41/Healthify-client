@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import axios from 'axios'
 
 import {
   StyleSheet,
@@ -21,49 +20,116 @@ export default function Diagnosis() {
   const [selectedBodyPart, setSelectedBodyPart] = useState({})
   const [bodyPartsLoaded, setBodyPartsLoaded] = useState(false)
   const [bodyParts, setBodyParts] = useState([])
+  const [selectedSubBodyPart, setSelectedSubBodyPart] = useState({})
+  const [subBodyParts, setSubBodyParts] = useState([])
   const [symptoms, setSymptoms] = useState([])
   const [selectedSymptom, setSelectedSymptom] = useState({})
 
   async function fetchDiagnosis() {
-    Alert.alert('Fetching Diagnosis')
+    fetch(
+      'https://rapidapi.p.rapidapi.com/diagnosis?symptoms=' +
+        JSON.stringify([selectedSymptom.ID]) +
+        '&gender=male&year_of_birth=1984&language=en-gb',
+      {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-host': 'priaid-symptom-checker-v1.p.rapidapi.com',
+          'x-rapidapi-key':
+            '24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb',
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        Alert.alert(
+          'Top 3 Diagnosis',
+
+          data[0].Issue.Name +
+            ' - ' +
+            data[0].Issue.Accuracy +
+            '%\nSpecialization: ' +
+            data[0].Specialisation[0].Name +
+            '\n\n' +
+            data[1].Issue.Name +
+            ' - ' +
+            data[1].Issue.Accuracy +
+            '%\nSpecialization: ' +
+            data[1].Specialisation[1].Name +
+            '\n\n' +
+            data[2].Issue.Name +
+            ' - ' +
+            data[2].Issue.Accuracy +
+            '%\nSpecialization: ' +
+            data[2].Specialisation[2].Name
+        )
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
-  async function fetchSymptoms() {
-    // await axios.get().then((response) => setBodyParts(response.data))
-    setSymptoms([
+  async function fetchSymptoms(subBodyPart) {
+    fetch(
+      'https://rapidapi.p.rapidapi.com/symptoms/' +
+        subBodyPart.ID +
+        '/man?language=en-gb',
       {
-        id: 1,
-        name: 'ache',
-      },
-      {
-        id: 2,
-        name: 'burning',
-      },
-    ])
-
-    setSelectedSymptom[symptoms[0]]
+        method: 'GET',
+        headers: {
+          'x-rapidapi-host': 'priaid-symptom-checker-v1.p.rapidapi.com',
+          'x-rapidapi-key':
+            '24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb',
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setSymptoms(data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   async function fetchBodyParts() {
-    // await axios.get().then((response) => setBodyParts(response.data))
-    setBodyParts([
-      // {
-      //   id: 0,
-      //   name: 'Select Body Part',
-      // },
-      {
-        id: 1,
-        name: 'Head',
+    fetch('https://rapidapi.p.rapidapi.com/body/locations?language=en-gb', {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-host': 'priaid-symptom-checker-v1.p.rapidapi.com',
+        'x-rapidapi-key': '24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb',
       },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setBodyParts(data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  async function fetchSubBodyParts(bodyPart) {
+    fetch(
+      'https://rapidapi.p.rapidapi.com/body/locations/' +
+        bodyPart.ID +
+        '?language=en-gb',
       {
-        id: 2,
-        name: 'Stomach',
-      },
-    ])
-
-    setSelectedBodyPart[bodyParts[0]]
-
-    fetchSymptoms()
+        method: 'GET',
+        headers: {
+          'x-rapidapi-host': 'priaid-symptom-checker-v1.p.rapidapi.com',
+          'x-rapidapi-key':
+            '24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb',
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setSubBodyParts(data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   if (bodyPartsLoaded) {
@@ -83,13 +149,31 @@ export default function Diagnosis() {
               style={styles.picker}
               onValueChange={(itemValue, itemIndex) => {
                 setSelectedBodyPart(itemValue)
-                fetchSymptoms()
+                fetchSubBodyParts(itemValue)
               }}>
               {bodyParts.map((bodyPart) => (
                 <Picker.Item
-                  label={bodyPart.name}
+                  label={bodyPart.Name}
                   value={bodyPart}
-                  key={bodyPart.id}
+                  key={bodyPart.ID}
+                />
+              ))}
+            </Picker>
+
+            <Text style={styles.label}>Select Sub Body Part</Text>
+
+            <Picker
+              selectedValue={selectedSubBodyPart}
+              style={styles.picker}
+              onValueChange={(itemValue, itemIndex) => {
+                setSelectedSubBodyPart(itemValue)
+                fetchSymptoms(itemValue)
+              }}>
+              {subBodyParts.map((subBodyPart) => (
+                <Picker.Item
+                  label={subBodyPart.Name}
+                  value={subBodyPart}
+                  key={subBodyPart.ID}
                 />
               ))}
             </Picker>
@@ -102,11 +186,11 @@ export default function Diagnosis() {
               onValueChange={(itemValue, itemIndex) =>
                 setSelectedSymptom(itemValue)
               }>
-              {symptoms.map((bodyPart) => (
+              {symptoms.map((symptom) => (
                 <Picker.Item
-                  label={bodyPart.name}
-                  value={bodyPart}
-                  key={bodyPart.id}
+                  label={symptom.Name}
+                  value={symptom}
+                  key={symptom.ID}
                 />
               ))}
             </Picker>
