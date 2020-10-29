@@ -12,11 +12,10 @@ import {
 import { Picker } from "@react-native-community/picker";
 import { Provider as PaperProvider, Appbar, Button } from "react-native-paper";
 import { AppLoading } from "expo";
-
 import Constants from "expo-constants";
 import color from "../config/color";
 
-export default function Diagnosis() {
+export default function Diagnosis({navigation}) {
   const [selectedBodyPart, setSelectedBodyPart] = useState({});
   const [bodyPartsLoaded, setBodyPartsLoaded] = useState(false);
   const [bodyParts, setBodyParts] = useState([]);
@@ -47,7 +46,7 @@ export default function Diagnosis() {
             " - " +
             data[1].Issue.Accuracy +
             "%\nSpecialization: " +
-            data[1].Specialisation[1].Name
+            data[1].Specialisation[0].Name
           : "";
 
         let diag2 = data[2]
@@ -56,7 +55,7 @@ export default function Diagnosis() {
             " - " +
             data[2].Issue.Accuracy +
             "%\nSpecialization: " +
-            data[2].Specialisation[2].Name
+            data[2].Specialisation[0].Name
           : "";
 
         Alert.alert(
@@ -213,6 +212,15 @@ export default function Diagnosis() {
             >
               Submit
             </Button>
+
+            <Button
+              // icon="go"
+              mode="contained"
+              onPress={() => navigation.navigate('result')}
+              style={styles.btn}
+            >
+              See Results
+            </Button>
           </View>
         </PaperProvider>
       </SafeAreaView>
@@ -266,5 +274,6 @@ const styles = StyleSheet.create({
     width: 150,
     paddingTop: 5,
     borderRadius: 25,
+    marginTop: 15,
   },
 });

@@ -71,5 +71,7 @@ const styles = StyleSheet.create({
     width: 150,
     paddingTop: 5,
     borderRadius: 25,
+    marginTop: 100,
+
   },
 })

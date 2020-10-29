@@ -12,6 +12,8 @@ import register from './app/screens/register'
 import hangon from './app/screens/hangon'
 import allset from './app/screens/allset'
 import diagnosis from './app/screens/diagnosis'
+import result from './app/screens/result'
+
 
 const getFonts = () => {
   return Fonts.loadAsync({
@@ -42,6 +44,8 @@ export default function App() {
           <Stack.Screen name="hangon" component={hangon} />
           <Stack.Screen name="allset" component={allset} />
           <Stack.Screen name="diagnosis" component={diagnosis} />
+          <Stack.Screen name="result" component={result} />
+
         </Stack.Navigator>
       </NavigationContainer>
     )
