@@ -15,7 +15,7 @@ import { AppLoading } from "expo";
 import Constants from "expo-constants";
 import color from "../config/color";
 
-export default function Diagnosis({navigation}) {
+export default function Diagnosis({ navigation }) {
   const [selectedBodyPart, setSelectedBodyPart] = useState({});
   const [bodyPartsLoaded, setBodyPartsLoaded] = useState(false);
   const [bodyParts, setBodyParts] = useState([]);
@@ -205,18 +205,13 @@ export default function Diagnosis({navigation}) {
             </Picker>
 
             <Button
-              icon="check"
-              mode="contained"
-              onPress={() => fetchDiagnosis()}
-              style={styles.btn}
-            >
-              Submit
-            </Button>
-
-            <Button
               // icon="go"
               mode="contained"
-              onPress={() => navigation.navigate('result')}
+              onPress={() =>
+                navigation.navigate("result", {
+                  symptom: selectedSymptom.ID,
+                })
+              }
               style={styles.btn}
             >
               See Results

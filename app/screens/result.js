@@ -8,28 +8,65 @@ import {
   // Button,
   ImageBackground,
   Dimensions,
+  Alert,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Provider as PaperProvider, Button } from "react-native-paper";
 
 import color from "../config/color";
-export default function diagnosis({ navigation }) {
+export default function diagnosis({ navigation, route }) {
+  let symptom = route.params.symptom;
+  let result = "";
+  fetch(
+    "https://rapidapi.p.rapidapi.com/diagnosis?symptoms=" +
+      JSON.stringify([symptom]) +
+      "&gender=male&year_of_birth=1984&language=en-gb",
+    {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "priaid-symptom-checker-v1.p.rapidapi.com",
+        "x-rapidapi-key": "24097d5ee5msh92792d7398602acp18fa53jsncf72a8cf8feb",
+      },
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      let diag1 = data[1]
+        ? "\n\n" +
+          data[1].Issue.Name +
+          " - " +
+          data[1].Issue.Accuracy +
+          "%\nSpecialization: " +
+          data[1].Specialisation[0].Name
+        : "";
+
+      let diag2 = data[2]
+        ? "\n\n" +
+          data[2].Issue.Name +
+          " - " +
+          data[2].Issue.Accuracy +
+          "%\nSpecialization: " +
+          data[2].Specialisation[0].Name
+        : "";
+
+      result =
+        data[0].Issue.Name +
+        " - " +
+        data[0].Issue.Accuracy +
+        "%\nSpecialization: " +
+        data[0].Specialisation[0].Name +
+        diag1 +
+        diag2;
+
+      Alert.alert("Top 3 Diagnosis", result);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
   return (
     <View style={styles.container}>
-      {/* <Image
-        style={styles.BackgroundImage}
-        source={require('../assets/image/hangon.png')}></Image>
-      <Text style={styles.Text}>Hang ON!</Text>
-      <Text style={styles.Text1}>Let us sign you UP!</Text>
-
-      <Button
-        // icon="check"
-        mode="contained"
-        onPress={() => navigation.navigate('diagnosis')}
-        style={styles.btn}>
-        Diagnose
-      </Button> */}
       <Text style={styles.Text}>Results</Text>
       <Text style={styles.Text}>See how you are doing!</Text>
       <Image
