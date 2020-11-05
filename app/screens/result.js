@@ -68,7 +68,7 @@ export default function diagnosis({ navigation, route }) {
   return (
     <View style={styles.container}>
       <Text style={styles.Text}>Results</Text>
-      <Text style={styles.Text}>See how you are doing!</Text>
+      <Text style={styles.Text1}>See how you are doing!</Text>
       <Image
         style={styles.BackgroundImage}
         source={require("../assets/image/hangon.png")}
