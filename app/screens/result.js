@@ -60,7 +60,7 @@ export default function diagnosis({ navigation, route }) {
           diag2
       );
 
-      Alert.alert("Top 3 Diagnosis", result);
+      //Alert.alert("Top 3 Diagnosis", result);
     })
     .catch((error) => {
       console.error(error);
@@ -73,7 +73,15 @@ export default function diagnosis({ navigation, route }) {
       <Text>{result}</Text>
       <Image
         style={styles.BackgroundImage}
-        source={require("../assets/image/hangon.png")}
+        source={require("../assets/image/progresswheel1.png")}
+      ></Image>
+      <Image
+        style={styles.BackgroundImage}
+        source={require("../assets/image/progresswheel0.png")}
+      ></Image>
+      <Image
+        style={styles.BackgroundImage}
+        source={require("../assets/image/progresswheel2.png")}
       ></Image>
       <Button mode="contained" style={styles.btn}>
         Finish
@@ -90,8 +98,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   BackgroundImage: {
-    alignItems: "center",
-    position: "absolute",
+    alignItems: "top",
+    position: "default",
     top: Dimensions.get("window").height / 5, //margin TOP
     height: Dimensions.get("window").height / 2.5, //HEIGHT
     width: Dimensions.get("window").width, //WIDTH
