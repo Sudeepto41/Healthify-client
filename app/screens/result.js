@@ -18,6 +18,8 @@ import color from "../config/color";
 export default function diagnosis({ navigation, route }) {
   let symptom = route.params.symptom;
   const [result, setResult] = useState("");
+  const [sum, setSum] = useState(0);
+  const [count, setCount] = useState(0);
   fetch(
     "https://rapidapi.p.rapidapi.com/diagnosis?symptoms=" +
       JSON.stringify([symptom]) +
