@@ -86,23 +86,25 @@ export default function diagnosis({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.Text}>Results</Text>
-      <Text style={styles.Text1}>See how you are doing!</Text>
-      <Text>{result}</Text>
+      <View style={styles.total}> 
+        <Text style={styles.Text}>Results</Text>
+        <Text style={styles.Text1}>See how you are doing!</Text>
+        <Text style={styles.Text2}>{result}</Text>
+      </View>
 
       {() => {
         if (average >= 80) {
           return (
             <Image
               style={styles.BackgroundImage}
-              source={require("../assets/image/progresswheel2.png")} 
+              source={require("../assets/image/progresswheel2.png")}
             ></Image>
           );
         } else if (average >= 60) {
           return (
             <Image
               style={styles.BackgroundImage}
-              source={require("../assets/image/progresswheel0.png")} 
+              source={require("../assets/image/progresswheel0.png")}
             ></Image>
           );
         } else {
@@ -110,8 +112,9 @@ export default function diagnosis({ navigation, route }) {
             <Image
               style={styles.BackgroundImage}
               source={require("../assets/image/progresswheel1.png")}
-              ></Image>
-          )}
+            ></Image>
+          );
+        }
       }}
 
       <Image
@@ -142,35 +145,42 @@ const styles = StyleSheet.create({
   },
   Image: {
     position: "absolute",
-    top: Dimensions.get("window").height / 10,
-    height: Dimensions.get("window").height / 5,
-    width: Dimensions.get("window").height / 5,
+    top: Dimensions.get("window").height / 15,
+    height: 300,
+    width: 300,
   },
   BackgroundImage: {
     alignItems: "center",
     position: "absolute",
-    top: Dimensions.get("window").height / 5, //margin TOP
-    height: Dimensions.get("window").height / 2.5, //HEIGHT
-    width: Dimensions.get("window").width, //WIDTH
+    top: Dimensions.get("window").height / 20, //margin TOP
+    height: 300,
+    width: 300,
   },
   Text: {
-    position: "absolute",
-    top: Dimensions.get("window").height / 1.5,
     fontFamily: "nunito-Black",
+    top: Dimensions.get("window").height / 200, //margin TOP
     color: "#4B5769",
     fontSize: 24,
     textAlign: "center",
   },
   Text1: {
-    position: "absolute",
-    top: Dimensions.get("window").height / 1.4,
+    fontFamily: "nunito-Black",
+    color: "#4B5769",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  Text2: {
     fontFamily: "nunito-regular",
     color: "#4B5769",
     fontSize: 20,
     textAlign: "center",
   },
+  total: {
+    position: "absolute",
+    top: Dimensions.get("window").height / 2.5, //margin TOP
+  },
   btn: {
-    top: 24,
+    top: 274,
     backgroundColor: "#2974DF",
     height: 50,
     width: 150,
