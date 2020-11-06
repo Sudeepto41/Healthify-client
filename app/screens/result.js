@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -17,7 +17,7 @@ import { Provider as PaperProvider, Button } from "react-native-paper";
 import color from "../config/color";
 export default function diagnosis({ navigation, route }) {
   let symptom = route.params.symptom;
-  let result = "";
+  const [result, setResult] = useState("");
   fetch(
     "https://rapidapi.p.rapidapi.com/diagnosis?symptoms=" +
       JSON.stringify([symptom]) +
@@ -50,14 +50,15 @@ export default function diagnosis({ navigation, route }) {
           data[2].Specialisation[0].Name
         : "";
 
-      result =
+      setResult(
         data[0].Issue.Name +
-        " - " +
-        data[0].Issue.Accuracy +
-        "%\nSpecialization: " +
-        data[0].Specialisation[0].Name +
-        diag1 +
-        diag2;
+          " - " +
+          data[0].Issue.Accuracy +
+          "%\nSpecialization: " +
+          data[0].Specialisation[0].Name +
+          diag1 +
+          diag2
+      );
 
       Alert.alert("Top 3 Diagnosis", result);
     })
@@ -69,6 +70,7 @@ export default function diagnosis({ navigation, route }) {
     <View style={styles.container}>
       <Text style={styles.Text}>Results</Text>
       <Text style={styles.Text1}>See how you are doing!</Text>
+      <Text>{result}</Text>
       <Image
         style={styles.BackgroundImage}
         source={require("../assets/image/hangon.png")}
