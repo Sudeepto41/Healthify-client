@@ -97,7 +97,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  Image: {
+    position: "absolute",
+    top: Dimensions.get("window").height / 10,
     height: Dimensions.get("window").height / 5,
+    width: Dimensions.get("window").height / 5,
+  },
   BackgroundImage: {
     alignItems: "center",
     position: "absolute",
