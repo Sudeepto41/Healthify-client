@@ -20,6 +20,7 @@ export default function diagnosis({ navigation, route }) {
   const [result, setResult] = useState("");
   const [sum, setSum] = useState(0);
   const [count, setCount] = useState(0);
+  const [average, setAverage] = useState(0);
   fetch(
     "https://rapidapi.p.rapidapi.com/diagnosis?symptoms=" +
       JSON.stringify([symptom]) +
@@ -61,7 +62,21 @@ export default function diagnosis({ navigation, route }) {
           diag1 +
           diag2
       );
-      setSum(sum + Issue.Accuracy);
+
+      setSum(data[0].Issue.Accuracy);
+      setCount(1);
+
+      if (data[1]) {
+        setSum(sum + data[1].Issue.Accuracy);
+        setCount(count + 1);
+      }
+
+      if (data[2]) {
+        setSum(sum + data[2].Issue.Accuracy);
+        setCount(count + 1);
+      }
+
+      setAverage(sum / count);
 
       //Alert.alert("Top 3 Diagnosis", result);
     })
@@ -74,6 +89,29 @@ export default function diagnosis({ navigation, route }) {
       <Text style={styles.Text}>Results</Text>
       <Text style={styles.Text1}>See how you are doing!</Text>
       <Text>{result}</Text>
+
+      {() => {
+        if (average >= 80) {
+          return (
+            <Image
+              style={styles.BackgroundImage}
+              source={require("../assets/image/progresswheel2.png")} 
+            ></Image>
+          );
+        } else if (average >= 60) {
+          return (
+            <Image
+              style={styles.BackgroundImage}
+              source={require("../assets/image/progresswheel0.png")} 
+          );
+        } else {
+          return (
+            <Image
+              style={styles.BackgroundImage}
+              source={require("../assets/image/progresswheel1.png")}
+        }
+      }}
+
       <Image
         style={styles.BackgroundImage}
         source={require("../assets/image/progresswheel1.png")}
