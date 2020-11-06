@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   BackgroundImage: {
-    alignItems: "top",
-    position: "default",
+    alignItems: "center",
+    position: "absolute",
     top: Dimensions.get("window").height / 5, //margin TOP
     height: Dimensions.get("window").height / 2.5, //HEIGHT
     width: Dimensions.get("window").width, //WIDTH
