@@ -103,13 +103,15 @@ export default function diagnosis({ navigation, route }) {
             <Image
               style={styles.BackgroundImage}
               source={require("../assets/image/progresswheel0.png")} 
+            ></Image>
           );
         } else {
           return (
             <Image
               style={styles.BackgroundImage}
               source={require("../assets/image/progresswheel1.png")}
-        }
+              ></Image>
+          )}
       }}
 
       <Image
