@@ -61,6 +61,7 @@ export default function diagnosis({ navigation, route }) {
           diag1 +
           diag2
       );
+      setSum(sum + Issue.Accuracy);
 
       //Alert.alert("Top 3 Diagnosis", result);
     })
